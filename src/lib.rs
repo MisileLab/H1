@@ -3,7 +3,7 @@ use async_trait::async_trait;
 use serde::Deserialize;
 
 #[async_trait]
-trait ClientTrait {
+pub trait ClientTrait {
     async fn get_stream_informations(self, filter: Vec<String>) -> Result<Option<Vec<StreamProfile>>, reqwest::Error>;
 }
 
