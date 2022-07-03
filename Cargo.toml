@@ -1,5 +1,5 @@
 [package]
-name = "streamer_notify"
+name = "h1"
 version = "0.1.0"
 description = "yeah."
 repository = "https://github.com/misilelab/StreamerAutoNotification"
