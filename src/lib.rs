@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use async_trait::async_trait;
 
 use serde::Deserialize;
@@ -22,7 +24,7 @@ struct StreamProfileWrapper {
 #[derive(Clone)]
 pub struct Client {
     pub access_token: String,
-    pub filter: Vec<String>
+    pub filter: HashSet<String>
 }
 
 #[async_trait]
