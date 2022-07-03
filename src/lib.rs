@@ -4,7 +4,7 @@ use serde::Deserialize;
 
 #[async_trait]
 pub trait ClientTrait {
-    async fn get_stream_informations(self) -> Result<Option<Vec<StreamProfile>>, reqwest::Error>;
+    async fn get_stream_informations(&self) -> Result<Option<Vec<StreamProfile>>, reqwest::Error>;
 }
 
 #[derive(Deserialize)]
@@ -27,12 +27,12 @@ pub struct Client {
 
 #[async_trait]
 impl ClientTrait for Client {
-    async fn get_stream_informations(self) -> Result<Option<Vec<StreamProfile>>, reqwest::Error> {
+    async fn get_stream_informations(&self) -> Result<Option<Vec<StreamProfile>>, reqwest::Error> {
         let result: StreamProfileWrapper = reqwest::Client::new()
         .get("https://api.twitch.tv/helix/streams")
-        .bearer_auth(self.access_token)
+        .bearer_auth(self.access_token.clone())
         .query(&[("first", 100)])
-        .query(&[("user_login", self.filter)])
+        .query(&[("user_login", self.filter.clone())])
         .send().await?
         .json().await?;
 
